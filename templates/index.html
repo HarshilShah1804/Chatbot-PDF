@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>PDF - ChatBot</title>
+    <script src="/static/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section class="chat-box" id="chat_box">
+        <div class="received">
+            Hello Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea officia nihil suscipit tempora fugit sint, eum iure totam consequatur. Atque quia obcaecati, eligendi iusto ullam nulla hic recusandae illum iste.
+        </div>
+        <div class="sent-cover">
+            <div class="sent">
+                Hiii
+            </div>
+        </div>
+         
+        <div class="received">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem temporibus officiis quibusdam! Natus, facere, quos placeat, nobis eveniet sequi officiis pariatur doloribus sunt animi nisi unde tenetur similique recusandae! Laboriosam dignissimos exercitationem, magnam iste sit dolor recusandae neque dolorum id. Voluptatibus, ex assumenda perspiciatis, deleniti fugiat quia facilis temporibus natus molestias, blanditiis adipisci sequi. Porro illo autem earum fuga voluptatibus natus quos ea odio laudantium, deleniti praesentium quia aspernatur, possimus ut maxime, fugit voluptatem adipisci optio reprehenderit expedita nostrum. Accusantium rem, animi, perferendis assumenda ipsum reprehenderit ducimus et odit libero ut repellat nostrum beatae similique quasi ipsam quia exercitationem omnis quis commodi velit? Numquam inventore incidunt porro id, harum quidem, ipsa nam suscipit dolor, praesentium cumque amet itaque cupiditate eaque corrupti quibusdam! Soluta ad cumque fuga mollitia ab assumenda doloremque eligendi aliquam iusto possimus voluptatum incidunt vitae consequatur asperiores eos, ea provident similique rem quo porro? Ex impedit maxime eveniet molestias, beatae magni amet fugit architecto porro aliquid labore dolor nobis dolore nesciunt animi debitis voluptate, in consequatur voluptatibus accusantium fugiat deleniti a! Magnam eveniet expedita sint quia molestias
+        </div> 
+    </section>
+
+    <section class="text-field">
+    <!--<div class="formc">
+        <form class="form_"  id="myForm" action="/submit">
+            <textarea id="text-input"></textarea>
+            
+            <button type="submit" value="submit" onclick="sent()">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSygPZVduCo9p0VkX7mQp7BLZXbHt-tcKt5w&s" alt="Send" id="send_img">
+            </button>
+        </form>
+    </div>
+     -->
+    <div class="formc">
+        <form class="form_" id="myForm">
+            <textarea id="text-input"></textarea>
+            <button type="submit" value="submit">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSygPZVduCo9p0VkX7mQp7BLZXbHt-tcKt5w&s" alt="Send" id="send_img">
+            </button>
+        </form>
+
+        <form  id="uploadForm" enctype="multipart/form-data">
+            
+            <input type="file" id="fileInput"  accept=".pdf" required >
+            
+                <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click();">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Noun_Project_cloud_upload_icon_411593_cc.svg/1130px-Noun_Project_cloud_upload_icon_411593_cc.svg.png" alt="Upload" id="upload_img">
+                </button>
+            <input type="submit" value="Upload" id="sbmit">    
+        </form> 
+        <div id="result"></div>
+    </div>
+        
+    
+
+    
+</section>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+    </body>
+</body>
+</html> 
