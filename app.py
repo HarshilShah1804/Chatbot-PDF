@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash,jsonify
 from werkzeug.utils import secure_filename
 import os
+from copy_of_summer_project import PDF_Chatbot
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -14,32 +15,34 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+bot = PDF_Chatbot()
 @app.route('/')
 def index():
+    
     return render_template('index.html')
 
 
-@app.route('/submit', methods=['POST'])
-def submit():
+@app.route('/upload', methods=['POST'])
+def upload_file():
     if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
-
-    file = request.files['file']
-
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']    
     if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
-
-    if file and file.filename.endswith('.pdf'):
-        filename = secure_filename(file.filename)
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return jsonify({'message': f'Success! Received {filename}'})
-    
-    return jsonify({'error': 'File not allowed'}), 400
+        flash('File uploaded successfully')
+        bot.parse(file)
+        print(bot.query("summarise the PDF"))
+        return redirect(url_for('index'))
+    else:
+        flash('Invalid file format. Only PDFs are allowed.')
+        return redirect(request.url)
 
 
-@app.route('/testing', methods=['GET'])
-def testing():
-    return jsonify({'message': 'Hello World!'})
 
 
 

@@ -41,19 +41,18 @@
     <div class="formc">
         <form class="form_" id="myForm">
             <textarea id="text-input"></textarea>
-            <button type="submit" value="submit">
+            <button type="submit" value="submit" onclick="sent()">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSygPZVduCo9p0VkX7mQp7BLZXbHt-tcKt5w&s" alt="Send" id="send_img">
             </button>
         </form>
 
-        <form  id="uploadForm" enctype="multipart/form-data">
-            
-            <input type="file" id="fileInput"  accept=".pdf" required >
+        <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+            <input type="file" id="fileInput" name="file" accept="application/pdf" onchange="document.getElementById('uploadForm').submit()">
             
                 <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click();">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Noun_Project_cloud_upload_icon_411593_cc.svg/1130px-Noun_Project_cloud_upload_icon_411593_cc.svg.png" alt="Upload" id="upload_img">
                 </button>
-            <input type="submit" value="Upload" id="sbmit">    
+            <input type="submit" value="Upload"> 
         </form> 
         <div id="result"></div>
     </div>

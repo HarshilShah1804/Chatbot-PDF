@@ -1,0 +1,6 @@
+llama-parse
+llama-index
+llama_index.embeddings.gradient
+llama_index.llms.gradient
+langchain
+langchain-community
