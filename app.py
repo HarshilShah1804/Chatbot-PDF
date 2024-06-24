@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash,jsonify
 from werkzeug.utils import secure_filename
 import os
-from copy_of_summer_project import PDF_Chatbot
+from chatbot import PDF_Chatbot
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
