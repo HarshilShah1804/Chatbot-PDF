@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash,jsonify
 from werkzeug.utils import secure_filename
 import os
-from copy_of_summer_project import PDF_Chatbot
+from chatbot import PDF_Chatbot
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -18,9 +18,7 @@ def allowed_file(filename):
 bot = PDF_Chatbot()
 @app.route('/')
 def index():
-    
     return render_template('index.html')
-
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -35,16 +33,20 @@ def upload_file():
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File uploaded successfully')
-        bot.parse(file)
-        print(bot.query("summarise the PDF"))
+        bot.parse(filename)
         return redirect(url_for('index'))
     else:
         flash('Invalid file format. Only PDFs are allowed.')
         return redirect(request.url)
 
-
-
-
+@app.route('/query',methods=['POST'])
+def query():
+    print(request.form)
+    form_data = dict(request.form)
+    print(form_data)
+    print(form_data['textarea']) 
+    # response = bot.query("Summarize")
+    return "Hello"
 
 if __name__ == '__main__':
     app.run(debug=True)

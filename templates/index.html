@@ -28,20 +28,10 @@
     </section>
 
     <section class="text-field">
-    <!--<div class="formc">
-        <form class="form_"  id="myForm" action="/submit">
-            <textarea id="text-input"></textarea>
-            
-            <button type="submit" value="submit" onclick="sent()">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSygPZVduCo9p0VkX7mQp7BLZXbHt-tcKt5w&s" alt="Send" id="send_img">
-            </button>
-        </form>
-    </div>
-     -->
     <div class="formc">
-        <form class="form_" id="myForm">
-            <textarea id="text-input"></textarea>
-            <button type="submit" value="submit" onclick="sent()">
+        <form class="form_" id="myForm" action="/query" method="post">
+            <textarea id="query", name="textarea"></textarea>
+            <button type="submit" value="submit">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSygPZVduCo9p0VkX7mQp7BLZXbHt-tcKt5w&s" alt="Send" id="send_img">
             </button>
         </form>
@@ -54,7 +44,7 @@
                 </button>
             <input type="submit" value="Upload"> 
         </form> 
-        <div id="result"></div>
+        <!-- <div id="result"></div> -->
     </div>
         
     
@@ -64,5 +54,5 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     
     </body>
-</body>
+
 </html> 
