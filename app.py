@@ -46,7 +46,8 @@ def query():
     print(form_data)
     print(form_data['textarea']) 
     # response = bot.query("Summarize")
-    return "Hello"
+    response = bot.query(form_data['textarea'])
+    return str(response)
 
 if __name__ == '__main__':
     app.run(debug=True)

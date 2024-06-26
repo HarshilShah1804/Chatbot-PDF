@@ -59,6 +59,26 @@ document.getElementById('myForm').addEventListener('keydown', function(event) {
     }
 });
 
+document.getElementById('sendQuery').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    console.log('clicked');
+    query = document.getElementById('query').value;
+    if (query !== '') { 
+        sent();
+        const formData = new FormData();
+        formData.append('textarea', query);
+
+        fetch('/query', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => recieved(data))
+        // .then(data => recieved(data))
+        .catch(error => console.error('Error:', error));
+    }
+});
+
 
 // document.getElementById('submit').addEventListener('click', function(event) {
 //     event.preventDefault(); 
