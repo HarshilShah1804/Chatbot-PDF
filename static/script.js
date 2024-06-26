@@ -7,6 +7,8 @@ function sent() {
     // event.preventDefault(); 
     const parentDiv = document.getElementById("chat_box");
     const sent_cover = document.createElement("div");
+    const anim_div = document.createElement("div");
+    anim_div.className = "pre-received";
     sent_cover.className = "sent-cover";
     const div = document.createElement("div");
     div.className = "sent";
@@ -16,6 +18,9 @@ function sent() {
     sent_cover.appendChild(div);
     parentDiv.appendChild(sent_cover);
     document.getElementById("query").value = "";
+    anim_div.innerHTML = '<div></div><div></div><div></div>'
+    parentDiv.appendChild(anim_div);
+
 
     const scrollableDiv = document.getElementById('chat_box');
     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
@@ -25,8 +30,10 @@ function sent() {
 function recieved(response){
     const parentDiv = document.getElementById("chat_box");
     const div = document.createElement("div");
+    const anim = document.getElementsByClassName("pre-received")[0];
     div.className = "received";
     div.innerHTML = response;
+    parentDiv.removeChild(anim);
     parentDiv.appendChild(div);
     
     const scrollableDiv = document.getElementById('chat_box');

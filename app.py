@@ -15,6 +15,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+upload = False
 bot = PDF_Chatbot()
 @app.route('/')
 def index():
@@ -22,6 +23,7 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    
     if 'file' not in request.files:
         flash('No file part')
         return redirect(request.url)
@@ -33,6 +35,8 @@ def upload_file():
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File uploaded successfully')
+        global upload
+        upload = True
         bot.parse(filename)
         return redirect(url_for('index'))
     else:
@@ -40,13 +44,17 @@ def upload_file():
         return redirect(request.url)
 
 @app.route('/query',methods=['POST'])
+
 def query():
+    if not upload:
+        return "Please upload a file first"
     print(request.form)
     form_data = dict(request.form)
     print(form_data)
     print(form_data['textarea']) 
     # response = bot.query("Summarize")
     response = bot.query(form_data['textarea'])
+    # response = str(response).replace("\n","<br>")
     return str(response)
 
 if __name__ == '__main__':

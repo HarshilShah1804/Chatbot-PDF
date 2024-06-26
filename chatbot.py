@@ -44,7 +44,7 @@ class PDF_Chatbot:
             chat_mode="context",
             memory=memory,
             system_prompt=(
-                "You are very friendly chatbot and talk very casually to me."
+                "You are formal chatbot. Give your answer in html rendering, without <html> and <body> tags."
             ),
         )
 
