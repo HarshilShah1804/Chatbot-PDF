@@ -17,17 +17,15 @@
         <div class="header">
             PDF - ChatBot
         </div>
-        
+        <div class="curr-pdf" id="curr-pdf">
+             {{file}}
+        </div>
     </header>   
     <section class="chat-box" id="chat_box">
-        <div class="received">
-            Hello Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea officia nihil suscipit tempora fugit sint, eum iure totam consequatur. Atque quia obcaecati, eligendi iusto ullam nulla hic recusandae illum iste.
+        <div class="received" >
+            Welcome to PDF - ChatBot. Please upload the PDF file to get started.
         </div>
-        <div class="sent-cover">
-            <div class="sent">
-                Hiii
-            </div>
-        </div>
+        
          
         <!-- <div class="pre-received">
             <div></div>
@@ -38,22 +36,22 @@
 
     <section class="text-field">
     <div class="formc">
+        
         <form class="form_" id="myForm" action="/query" method="post">
-            <textarea id="query", name="textarea"></textarea>
-            <button  id = "sendQuery">
-                <span class="material-symbols-outlined">
-                    send
-                    </span>
-            </button>
+            
+                <textarea id="query", name="textarea"></textarea>
+            
+                <button  id = "sendQuery">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#000000"><path d="M120-160v-640l760 320-760 320Zm66.67-102 520.66-218-520.66-220v158.67L428-480l-241.33 60v158Zm0 0v-438 438Z"/></svg>
+                </button>
+            
         </form>
 
         <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
-            <input type="file" id="fileInput" name="file" accept="application/pdf" onchange="document.getElementById('uploadForm').submit()" style="display: none;">
+            <input type="file" id="fileInput" name="file" accept="application/pdf" style="display: none;">
             
                 <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click();">
-                    <span class="material-symbols-outlined">
-                        upload_file
-                        </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#000000"><path d="M448-201.33h66.67V-391l76 76 46.66-47L480-516.67l-156 156L371-314l77-77v189.67ZM226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880H574l226 226v507.33q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-542.67v-190.66h-314v666.66h506.66v-476H540.67Zm-314-190.66v190.66-190.66 666.66-666.66Z"/></svg>
                 </button>
             <input type="submit" value="Upload" style="display: none;"> 
         </form> 

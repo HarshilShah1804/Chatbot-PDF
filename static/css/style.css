@@ -10,7 +10,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #9DB2BF;
+    background-color: #333333;
     overflow: hidden;
 }
 
@@ -19,13 +19,13 @@ body {
     left: 0;
     width: 100%;
     height: 75vh;
-    background-color: #9DB2BF;
+    background-color: #333333;
     /* border: 1px solid #141414; */
     /* min-height: 100%; */
     min-height: 68%;
     border-radius: 15px;
     overflow-y: auto;
-    scrollbar-width: none;
+    scrollbar-width: none;  
 }
 
 .text-field {
@@ -34,7 +34,7 @@ body {
     width: 100%;
     height: 15vh;
     overflow-y: auto;
-    background-color: #27374D;
+    background-color: #202020;
     border: 1px solid #5A5A5A;
     border-radius: 15px;
     display: flex;
@@ -48,10 +48,10 @@ body {
     height: auto;
     padding: 2%;
     margin: 2%;
-    background-color: #526D82;    
+    background-color: #444444;    
     border-radius: 15px 15px 15px 0px;
     word-wrap: break-word;
-    color: #FFFFFF;
+    color: #eeeeee;
 }
 
 .pre-received {
@@ -60,7 +60,7 @@ body {
     height: 25px;
     padding: 2%;
     margin: 2%;
-    background-color: #27374D;    
+    background-color:  #444444;    
     border-radius: 15px 15px 15px 0px;
     word-wrap: break-word;
     color: #FFFFFF;
@@ -117,44 +117,49 @@ body {
     text-align: left;
     position: relative;
     align-self: flex-end;
-    background-color: #526D82;
+    background-color: #191919;
     border-radius: 15px 15px 0px 15px;
     word-wrap: normal;
-    color: #ffffff;
+    color: #eeeeee;
 }
 
 .formc {
     min-width: 80%;
-    background-color: #9DB2BF;
+    background-color: #202020;
     margin: 0%;
     align-items: center;
     min-height: 40%;
     padding: 1rem;
     border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
 }
 
 .form_ {
     min-width: 60%;
     align-items: center;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
 }
 
 #query {
     max-height: 5vh;
     min-height: 3rem;
-    min-width: 80vw;
+    min-width: 75vw;
     box-sizing: border-box;
     /* margin-right: 5rem; */
     resize: none;
     overflow: auto;
-    background-color: #888888;
-    color: #FFFFFF;
-    border: 1px solid #AAAAAA;
+    background-color: #444444;
+    color: #eeeeee;
     border-radius: 5px;
+    padding: 4px;
+}
+#query:focus {
+    outline: none;
+    border-bottom: 2px solid #FFDAB9;
 }
 
 img {
@@ -163,24 +168,43 @@ img {
 }
 
 button {
-    background-color: #526D82;
+    background-color: #FFDAB9;
     border: none;
     border-radius: 10px;
     padding: 0rem;
-    margin: 0rem;
-    font-size: 1rem;
+    margin: 0rem 0rem 0rem 0.5rem;
+    /* font-size: 2rem; */
     cursor: pointer;
     overflow: hidden;
     color: #141616;
+    align-items: flex-end;
+
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFDAB9;
+    align-items: center;
 }
 
 .header{
     height: 6vh;
-    background-color: #526D82;
     text-align: left;
     font-size: 1.5rem;
     font-weight:bold;
     padding-left: 2%;
     padding-top: 1%;
     /* padding: 0.5rem; */
+    border-radius: 15px 15px 0px 0px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+}
+
+.curr-pdf{
+    height: auto;
+    margin-right: 5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #202020;
+    border-radius: 5px;
 }

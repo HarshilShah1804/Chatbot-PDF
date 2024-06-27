@@ -19,29 +19,31 @@ upload = False
 bot = PDF_Chatbot()
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', file = filename_global if upload else "No PDF uploaded")
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
     
     if 'file' not in request.files:
         flash('No file part')
-        return redirect(request.url)
+        return "No file found"
     file = request.files['file']    
     if file.filename == '':
         flash('No selected file')
-        return redirect(request.url)
+        return "Upload a valid file"
     if file and allowed_file(file.filename):
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File uploaded successfully')
         global upload
         upload = True
+        global filename_global
+        filename_global = filename
         bot.parse(filename)
-        return redirect(url_for('index'))
+        return "Upload successful! Let's chat!"
     else:
         flash('Invalid file format. Only PDFs are allowed.')
-        return redirect(request.url)
+        return "Invalid file format. Only PDFs are allowed."
 
 @app.route('/query',methods=['POST'])
 

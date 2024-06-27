@@ -26,7 +26,10 @@ class PDF_Chatbot:
 
         self.service_context = ServiceContext.from_defaults(
             chunk_size = 512, llm = self.llm, embed_model = self.embed_model
-        )  
+        )
+        self.chat_engine = None
+        self.memory = None
+        self.index = None  
         
     def parse(self,name):
         parser = LlamaParse(
@@ -36,18 +39,18 @@ class PDF_Chatbot:
         )
 
         self.document = parser.load_data(f"uploads\{name}")
-    
-    def query(self, query):
-        memory = ChatMemoryBuffer.from_defaults(token_limit=2000)
-        index = VectorStoreIndex.from_documents(self.document, service_context=self.service_context)
-        chat_engine = index.as_chat_engine(
+
+        self.memory = ChatMemoryBuffer.from_defaults(token_limit=2000)
+        self.index = VectorStoreIndex.from_documents(self.document, service_context=self.service_context)
+        self.chat_engine = self.index.as_chat_engine(
             chat_mode="context",
-            memory=memory,
+            memory=self.memory,
             system_prompt=(
-                "You are formal chatbot. Give your answer in html rendering, without <html> and <body> tags."
+                "You are formal chatbot. Give your answer in html rendering, without <html> and <body> tags. Only answer if it is present in the pdf."
             ),
         )
-
-        response = chat_engine.chat(query)
+    
+    def query(self, query):
+        response = self.chat_engine.chat(query)
         print(response)
         return response
