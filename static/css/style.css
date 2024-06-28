@@ -208,3 +208,9 @@ header{
     border-bottom: 2px solid #202020;
     border-radius: 5px;
 }
+
+#uploadForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
