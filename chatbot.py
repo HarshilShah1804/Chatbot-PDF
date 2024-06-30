@@ -10,7 +10,10 @@ import os
 os.environ['GRADIENT_ACCESS_TOKEN'] = "ITCAjsv0jUN01CT0TQ6bFcdeYKduw01e"
 os.environ['GRADIENT_WORKSPACE_ID'] = "89d595bc-bba8-4ea5-9bd8-d5ecbf224947_workspace"
 
+# Set up a PDF_Chatbot object
 class PDF_Chatbot:
+
+    # Initialize the object attributes
     def __init__(self):
         self.document=None
         self.llm = GradientBaseModelLLM(
