@@ -1,8 +1,10 @@
+// To Load the window from the bottommost using scroll
 window.addEventListener('load', () => {
     const scrollableDiv = document.getElementById('chat_box');
     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 });
 
+// Function to show animation while the response is being fetched from the chat engine
 function showAnimation(){
     const parentDiv = document.getElementById("chat_box");
     const anim_div = document.createElement("div");
@@ -13,6 +15,7 @@ function showAnimation(){
     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 }
 
+// Function to add the query of user as an html element in the "sent-cover"
 function sent() {
     const parentDiv = document.getElementById("chat_box");
     const sent_cover = document.createElement("div");
@@ -30,6 +33,7 @@ function sent() {
     showAnimation();
 }
 
+// Function to add the response from the chat engine in the "recieved"
 function recieved(response){
     const parentDiv = document.getElementById("chat_box");
     const div = document.createElement("div");
@@ -42,7 +46,7 @@ function recieved(response){
     scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 }
 
-
+// Add feature to send query using keys "Shift + Enter"
 document.getElementById('myForm').addEventListener('keydown', function(event) {
     if (event.shiftKey && event.key === 'Enter') {
         event.preventDefault(); 
@@ -64,6 +68,7 @@ document.getElementById('myForm').addEventListener('keydown', function(event) {
     }
 });
 
+// Send the query using the sendQuery button
 document.getElementById('sendQuery').addEventListener('click', function(event) {
     event.preventDefault(); 
     console.log('clicked');
@@ -84,6 +89,7 @@ document.getElementById('sendQuery').addEventListener('click', function(event) {
     }
 });
 
+// Send the file automatically to the server when user has uploaded it
 document.getElementById('fileInput').addEventListener('change', function(event) {
     event.preventDefault(); // Prevent default form submission
     document.getElementById('curr-pdf').innerHTML = document.getElementById('fileInput').files[0].name;

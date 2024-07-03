@@ -36,7 +36,7 @@
 
     <section class="text-field">
     <div class="formc">
-        
+        <!-- Form to fetch the query from the webapp-->
         <form class="form_" id="myForm" action="/query" method="post">
             
                 <textarea id="query", name="textarea"></textarea>
@@ -47,6 +47,7 @@
             
         </form>
 
+        <!-- Form to get the file the user had upload -->
         <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
             <input type="file" id="fileInput" name="file" accept="application/pdf" style="display: none;">
             
@@ -55,7 +56,7 @@
                 </button>
             <input type="submit" value="Upload" style="display: none;"> 
         </form> 
-        <!-- <div id="result"></div> -->
+        
     </div>
         
     

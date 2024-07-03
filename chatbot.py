@@ -6,7 +6,7 @@ from llama_index.core.memory import ChatMemoryBuffer
 from llama_parse import LlamaParse
 import os
 
-
+# Configure Environment for gradient access
 os.environ['GRADIENT_ACCESS_TOKEN'] = "ITCAjsv0jUN01CT0TQ6bFcdeYKduw01e"
 os.environ['GRADIENT_WORKSPACE_ID'] = "89d595bc-bba8-4ea5-9bd8-d5ecbf224947_workspace"
 
@@ -17,7 +17,7 @@ class PDF_Chatbot:
     def __init__(self):
         self.document=None
         self.llm = GradientBaseModelLLM(
-        base_model_slug="llama3-8b-chat",
+        base_model_slug="llama3-8b-chat",  #Set the model to llama 3 
         max_tokens=400,
         )
 
@@ -33,8 +33,10 @@ class PDF_Chatbot:
         self.chat_engine = None
         self.memory = None
         self.index = None  
-        
+
+    # Function to parse the file and set up chat engine for getting response 
     def parse(self,name):
+        # Set up the parser using llama parse
         parser = LlamaParse(
             api_key="llx-sCCsgFLBIwEUSbDXuq9TMZT8fZV5P12xpgjdDN3CBTekFxr5",  
             result_type="markdown",  
@@ -45,7 +47,9 @@ class PDF_Chatbot:
 
         self.memory = ChatMemoryBuffer.from_defaults(token_limit=2000)
         self.index = VectorStoreIndex.from_documents(self.document, service_context=self.service_context)
-        self.chat_engine = self.index.as_chat_engine(
+
+        #Set up the chat_engine
+        self.chat_engine = self.index.as_chat_engine( # Use as_chat_engine instead of as_query_engine to add memory of old chats
             chat_mode="context",
             memory=self.memory,
             system_prompt=(
@@ -53,6 +57,7 @@ class PDF_Chatbot:
             ),
         )
     
+    # Function to get response of queries from the chat engine
     def query(self, query):
         response = self.chat_engine.chat(query)
         print(response)
