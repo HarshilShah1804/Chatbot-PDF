@@ -5,3 +5,4 @@ llama_index.llms.gradient
 langchain
 langchain-community
 flask
+gunicorn
