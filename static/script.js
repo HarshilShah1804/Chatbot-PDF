@@ -98,6 +98,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     showAnimation();
     var form = document.getElementById('uploadForm');
     var file_data = new FormData(form);
+    console.log(file_dat);
     var oReq = new XMLHttpRequest();
     oReq.open("POST", "/upload", true);
     oReq.onload = function(oEvent) {
