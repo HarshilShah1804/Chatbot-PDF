@@ -104,6 +104,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         if (oReq.status == 200) {
             console.log(oReq.responseText);
             recieved(oReq.responseText);
+            console.log("Upload successful");
         } else {
             console.log("Error " + oReq.status + " occurred when trying to upload your file.");
             recieved("Error " + oReq.status + " occurred when trying to upload your file.");
