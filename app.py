@@ -10,6 +10,7 @@ app.secret_key = 'supersecretkey'
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = '/var/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
 
 def allowed_file(filename):
