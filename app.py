@@ -9,7 +9,8 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
-app.config['SECRET_KEY']='secret'
+app.config['SECRET_KEY'] = 'secret'
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
@@ -35,9 +36,9 @@ def upload_file():
         return "Upload a valid file"
 
     if file and allowed_file(file.filename):
-        filename = file.filename
+        filename = secure_filename(file.filename)
 
-        # Save file to temporary location
+        # Save file to the UPLOAD_FOLDER
         temp_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(temp_path)
 
@@ -46,7 +47,7 @@ def upload_file():
         upload = True
         global filename_global
         filename_global = filename
-        bot.parse(filename)
+        bot.parse(temp_path)
         return "Upload successful! Let's chat!"
     else:
         flash('Invalid file format. Only PDFs are allowed.')
