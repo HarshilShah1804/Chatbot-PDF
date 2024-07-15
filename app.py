@@ -41,13 +41,6 @@ def upload_file():
         temp_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(temp_path)
 
-        # Read file and save to MongoDB
-        # with open(temp_path, 'rb') as f:
-        #     file_id = fs.put(f, filename=filename)
-
-        # # Remove the temporary file
-        # os.remove(temp_path)
-
         flash('File uploaded successfully')
         global upload
         upload = True
