@@ -4,15 +4,12 @@ import os
 from chatbot import PDF_Chatbot
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['UPLOAD_FOLDER'] = os.path.abspath('uploads/')
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
-app.secret_key = 'supersecretkey'
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
-
+app.config['SECRET_KEY']='secret'
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
@@ -29,20 +26,34 @@ def upload_file():
     if 'file' not in request.files:
         flash('No file part')
         return "No file found"
+
     file = request.files['file']
+    print("File", file)
+
     if file.filename == '':
         flash('No selected file')
         return "Upload a valid file"
+
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
+        filename = file.filename
+
+        # Save file to temporary location
+        temp_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(temp_path)
+
+        # Read file and save to MongoDB
+        # with open(temp_path, 'rb') as f:
+        #     file_id = fs.put(f, filename=filename)
+
+        # # Remove the temporary file
+        # os.remove(temp_path)
+
         flash('File uploaded successfully')
         global upload
         upload = True
         global filename_global
         filename_global = filename
-        bot.parse(file_path)
+        bot.parse(filename)
         return "Upload successful! Let's chat!"
     else:
         flash('Invalid file format. Only PDFs are allowed.')
