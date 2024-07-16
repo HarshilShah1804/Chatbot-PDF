@@ -2,13 +2,13 @@ from flask import Flask, request, render_template, redirect, url_for, flash, jso
 from werkzeug.utils import secure_filename
 import os
 from chatbot import PDF_Chatbot
-from flask_mongoengine import MongoEngine as mongoDb
-from datetime import datetime
+# from flask_mongoengine import MongoEngine as mongoDb
+# from datetime import datetime
 
-class UserDocument(mongoDb.Document):
-    created = mongoDb.DateTimeField(default=datetime.utcnow, required=True)
-    filename = mongoDb.StringField()
-    _file = mongoDb.FileField()
+# class UserDocument(mongoDb.Document):
+#     created = mongoDb.DateTimeField(default=datetime.utcnow, required=True)
+#     filename = mongoDb.StringField()
+#     _file = mongoDb.FileField()
 
 
 app = Flask(__name__)
@@ -55,12 +55,13 @@ def upload_file():
         upload = True
         global filename_global
         filename_global = filename
-        userDoc = UserDocument()
-        userDoc.filename = filename
-        userDoc._file.put(file, content_type=file.content_type)
-        userDoc.save()
-        doc = UserDocument.objects.first()
-        bot.parse(doc._file.read())
+        # userDoc = UserDocument()
+        # userDoc.filename = filename
+        # userDoc._file.put(file, content_type=file.content_type)
+        # userDoc.save()
+        # doc = UserDocument.objects.first()
+        # bot.parse(doc._file.read())
+        bot.parse(temp_path)
         return "Upload successful! Let's chat!"
     else:
         flash('Invalid file format. Only PDFs are allowed.')
