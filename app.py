@@ -4,7 +4,7 @@ import os
 from chatbot import PDF_Chatbot
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+app.config['UPLOAD_FOLDER'] = os.path.abspath('uploads')
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
@@ -42,6 +42,11 @@ def upload_file():
         temp_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         print(f"Saving file to temporary path: {temp_path}")
         file.save(temp_path)
+
+        # Debug statement to ensure the file was saved correctly
+        if not os.path.exists(temp_path):
+            print(f"File not found at {temp_path}")
+            return f"File not found at {temp_path}", 500
 
         flash('File uploaded successfully')
         global upload
