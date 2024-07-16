@@ -18,7 +18,7 @@ os.environ['GRADIENT_ACCESS_TOKEN'] = "YOUR_GRADIENT_ACCESS_TOKEN"
 os.environ['GRADIENT_WORKSPACE_ID'] = "YOUR_GRADIENT_WORKSPACE_ID"
 ```
 ```python
-api_key="llx-sCCsgFLBIwEUSbDXuq9TMZT8fZV5P12xpgjdDN3CBTekFxr5
+api_key="your_api_key"
 ```
 ### Run the application
 ```bash
