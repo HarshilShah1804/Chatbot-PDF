@@ -35,3 +35,7 @@ The app is configured in a way such that ir will not give answers to questions o
 ### Asking a query
 1. After uploading a PDF, the bot will take some time to parse it and a prompt will be shown once it is ready to answer your queries.
 2. After getting the prompt, type your query in the text-box and click on the send button.
+
+## UI of the web app
+![image](https://github.com/user-attachments/assets/80fba9a1-8ffe-452b-856e-cd92fd8a7cee)
+
