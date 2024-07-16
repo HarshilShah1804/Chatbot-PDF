@@ -38,7 +38,7 @@ class PDF_Chatbot:
             verbose=True
         )
 
-        self.document = parser.load_data(f"uploads\{name}")
+        self.document = parser.load_data(name)
 
         self.memory = ChatMemoryBuffer.from_defaults(token_limit=2000)
         self.index = VectorStoreIndex.from_documents(self.document, service_context=self.service_context)
