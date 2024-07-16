@@ -1,18 +1,10 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, send_from_directory
+from flask import Flask, request, render_template, flash, send_from_directory
 from werkzeug.utils import secure_filename
 import os
 from chatbot import PDF_Chatbot
-# from flask_mongoengine import MongoEngine as mongoDb
-# from datetime import datetime
-
-# class UserDocument(mongoDb.Document):
-#     created = mongoDb.DateTimeField(default=datetime.utcnow, required=True)
-#     filename = mongoDb.StringField()
-#     _file = mongoDb.FileField()
-
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = os.path.abspath('uploads/')
+app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
@@ -48,6 +40,7 @@ def upload_file():
 
         # Save file to the UPLOAD_FOLDER
         temp_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print(f"Saving file to temporary path: {temp_path}")
         file.save(temp_path)
 
         flash('File uploaded successfully')
@@ -55,12 +48,6 @@ def upload_file():
         upload = True
         global filename_global
         filename_global = filename
-        # userDoc = UserDocument()
-        # userDoc.filename = filename
-        # userDoc._file.put(file, content_type=file.content_type)
-        # userDoc.save()
-        # doc = UserDocument.objects.first()
-        # bot.parse(doc._file.read())
         bot.parse(temp_path)
         return "Upload successful! Let's chat!"
     else:
@@ -77,6 +64,9 @@ def query():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
+    # Construct the full file path
+    full_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    print(f"Serving file from: {full_path}")
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
