@@ -8,8 +8,8 @@ from llama_parse import LlamaParse
 import os
 
 # Set up the environment varianbles
-os.environ['GRADIENT_ACCESS_TOKEN'] = "ITCAjsv0jUN01CT0TQ6bFcdeYKduw01e"
-os.environ['GRADIENT_WORKSPACE_ID'] = "89d595bc-bba8-4ea5-9bd8-d5ecbf224947_workspace"
+os.environ['GRADIENT_ACCESS_TOKEN'] = "YOUR_GRADIENT_ACCESS_TOKEN"
+os.environ['GRADIENT_WORKSPACE_ID'] = "YOUR_GRADIENT_WORKSPACE_ID"
 
 # Create PDF-Chatbot class
 class PDF_Chatbot:
@@ -37,7 +37,7 @@ class PDF_Chatbot:
     # Function to parse the uploaded pdf using LlamaParse
     def parse(self,name):
         parser = LlamaParse(
-            api_key="llx-sCCsgFLBIwEUSbDXuq9TMZT8fZV5P12xpgjdDN3CBTekFxr5",  # Llama Index API key
+            api_key="your_api_key",  # Llama Index API key
             result_type="markdown",  
             verbose=True
         )
